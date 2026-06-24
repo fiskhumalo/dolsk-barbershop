@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  DOLSK BARBERSHOP — Design System
+  
+  Colors:
+  - background: Rich black (#0F0F0F) — premium feel, not harsh
+  - surface: Dark gray (#1A1A1A) — cards/sections stand out from background
+  - primary: Warm gold (#C8A96E) — luxury, premium accent color
+  - primary-hover: Deeper gold (#B8943F) — feedback on interaction
+  - foreground: White (#FFFFFF) — high contrast text on dark
+  - muted: Gray (#A1A1A1) — secondary/less important text
+  
+  Fonts:
+  - sans (Inter): Body text — clean and readable
+  - serif (Playfair Display): Headings — elegant, classic barber vibe
+*/
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Font families */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+
+  /* Brand colors */
+  --color-background: #0F0F0F;
+  --color-surface: #1A1A1A;
+  --color-foreground: #FFFFFF;
+  --color-muted: #A1A1A1;
+  --color-primary: #C8A96E;
+  --color-primary-hover: #B8943F;
+  --color-success: #4CAF50;
+  --color-error: #EF4444;
+  --color-border: #2A2A2A;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for keyboard navigation (accessibility) */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Remove default focus ring but keep for keyboard users */
+*:focus:not(:focus-visible) {
+  outline: none;
 }
