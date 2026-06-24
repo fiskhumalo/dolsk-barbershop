@@ -6,7 +6,7 @@ A modern, premium barbershop website built for the CommunityBytes Web Developer 
 
 ## Live Demo
 
-🔗 **Live Site:** [Coming soon — Vercel deployment]
+🔗 **Live Site:** [dolsk-barbershop.vercel.app](https://dolsk-barbershop.vercel.app)
 
 ## Features
 
