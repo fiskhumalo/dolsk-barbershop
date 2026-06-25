@@ -3,61 +3,79 @@
 import { useState } from "react";
 import Image from "next/image";
 
-// Gallery images using free stock photos from Unsplash
+// Gallery images — African barbershop style (local images)
 const galleryItems = [
   {
     id: 1,
-    category: "Haircuts",
-    alt: "Classic gentleman's cut",
-    src: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=600&fit=crop",
+    category: "Beards",
+    alt: "Beard trim and styling",
+    src: "/gallery-1.jpg",
   },
   {
     id: 2,
     category: "Haircuts",
     alt: "Modern skin fade",
-    src: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&h=600&fit=crop",
+    src: "/gallery-2.jpg",
   },
   {
     id: 3,
     category: "Beards",
-    alt: "Beard trim and shape",
-    src: "https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&h=600&fit=crop",
+    alt: "Full beard grooming",
+    src: "/beard-grooming.jpg",
   },
   {
     id: 4,
     category: "Haircuts",
-    alt: "Textured crop cut",
-    src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=600&fit=crop",
+    alt: "Sharp low fade",
+    src: "/gallery-4.jpg",
   },
   {
     id: 5,
     category: "Beards",
-    alt: "Full beard grooming",
-    src: "https://images.unsplash.com/photo-1621607512214-68297480165e?w=600&h=600&fit=crop",
+    alt: "Beard shape and lineup",
+    src: "/about-barber.jpg",
   },
   {
     id: 6,
     category: "Shop",
-    alt: "Barbershop interior",
-    src: "https://images.unsplash.com/photo-1585747860019-8e79b0e5b6e8?w=600&h=600&fit=crop",
+    alt: "Barbershop session",
+    src: "/gallery-6.jpg",
   },
   {
     id: 7,
     category: "Haircuts",
-    alt: "Taper fade with design",
-    src: "https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?w=600&h=600&fit=crop",
+    alt: "Precision line up",
+    src: "/gallery-7.jpg",
   },
   {
     id: 8,
     category: "Shop",
-    alt: "Barber tools close-up",
-    src: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop&crop=bottom",
+    alt: "Barber at work",
+    src: "/gallery-8.jpg",
   },
   {
     id: 9,
-    category: "Beards",
-    alt: "Hot towel shave process",
-    src: "https://images.unsplash.com/photo-1599351431613-18ef1fdd27e1?w=600&h=600&fit=crop",
+    category: "Haircuts",
+    alt: "Fresh haircut finish",
+    src: "/gallery-9.jpg",
+  },
+  {
+    id: 10,
+    category: "Haircuts",
+    alt: "Fresh cut styling",
+    src: "/gallery-10.jpg",
+  },
+  {
+    id: 11,
+    category: "Shop",
+    alt: "Barber and client",
+    src: "/gallery-11.jpg",
+  },
+  {
+    id: 12,
+    category: "Haircuts",
+    alt: "Classic taper fade",
+    src: "/gallery-12.jpg",
   },
 ];
 

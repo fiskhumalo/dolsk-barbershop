@@ -34,35 +34,46 @@ export default function ServicesPage() {
             {services.map((service) => (
               <div
                 key={service.id}
-                className="bg-surface border border-border rounded-lg p-6 flex flex-col hover:border-primary/50 transition-colors duration-300"
+                className="bg-surface border border-border rounded-lg overflow-hidden flex flex-col hover:border-primary/50 transition-colors duration-300"
               >
-                {/* Service name */}
-                <h2 className="font-serif text-xl text-foreground">
-                  {service.name}
-                </h2>
-
-                {/* Description */}
-                <p className="mt-2 text-muted text-sm leading-relaxed flex-1">
-                  {service.description}
-                </p>
-
-                {/* Price and duration */}
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-primary font-semibold text-lg">
-                    R{service.price}
-                  </span>
-                  <span className="text-muted text-xs bg-background px-2 py-1 rounded">
-                    {service.duration}
-                  </span>
+                {/* Service image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
-                {/* Book Now button — links to booking with service pre-selected */}
-                <Link
-                  href={`/booking?service=${service.id}`}
-                  className="mt-5 block text-center bg-primary hover:bg-primary-hover text-background font-semibold py-2.5 rounded text-sm uppercase tracking-wide transition-colors duration-200"
-                >
-                  Book Now
-                </Link>
+                <div className="p-6 flex flex-col flex-1">
+                  {/* Service name */}
+                  <h2 className="font-serif text-xl text-foreground">
+                    {service.name}
+                  </h2>
+
+                  {/* Description */}
+                  <p className="mt-2 text-muted text-sm leading-relaxed flex-1">
+                    {service.description}
+                  </p>
+
+                  {/* Price and duration */}
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-primary font-semibold text-lg">
+                      R{service.price}
+                    </span>
+                    <span className="text-muted text-xs bg-background px-2 py-1 rounded">
+                      {service.duration}
+                    </span>
+                  </div>
+
+                  {/* Book Now button — links to booking with service pre-selected */}
+                  <Link
+                    href={`/booking?service=${service.id}`}
+                    className="mt-5 block text-center bg-primary hover:bg-primary-hover text-background font-semibold py-2.5 rounded text-sm uppercase tracking-wide transition-colors duration-200"
+                  >
+                    Book Now
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

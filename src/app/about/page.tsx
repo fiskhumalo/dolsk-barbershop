@@ -48,8 +48,8 @@ export default function AboutPage() {
           {/* Image */}
           <div className="relative overflow-hidden rounded-lg h-80 order-2 md:order-1">
             <img
-              src="https://images.unsplash.com/photo-1585747860019-8e79b0e5b6e8?w=600&h=400&fit=crop"
-              alt="Dolsk Barbershop interior"
+              src="/about-barber.jpg"
+              alt="Barber giving a fresh fade at Dolsk Barbershop"
               className="w-full h-full object-cover"
             />
           </div>
