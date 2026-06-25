@@ -45,9 +45,13 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Image placeholder */}
-          <div className="bg-surface border border-border rounded-lg h-80 flex items-center justify-center order-2 md:order-1">
-            <p className="text-muted text-sm">Shop Interior</p>
+          {/* Image */}
+          <div className="relative overflow-hidden rounded-lg h-80 order-2 md:order-1">
+            <img
+              src="https://images.unsplash.com/photo-1585747860019-8e79b0e5b6e8?w=600&h=400&fit=crop"
+              alt="Dolsk Barbershop interior"
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* Text */}

@@ -111,8 +111,12 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="bg-background border border-border rounded-lg h-80 flex items-center justify-center">
-            <p className="text-muted text-sm">Shop Image</p>
+          <div className="relative overflow-hidden rounded-lg h-80">
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=400&fit=crop"
+              alt="Barber cutting hair at Dolsk Barbershop"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
