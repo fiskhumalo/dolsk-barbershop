@@ -2,37 +2,27 @@ import Link from "next/link";
 import { services } from "@/constants/services";
 
 export default function Home() {
-  // Show only the first 3 services as a preview
   const featuredServices = services.slice(0, 3);
 
   return (
     <main className="flex-1">
-      {/* ===== HERO SECTION ===== */}
-      {/* The first thing visitors see — must grab attention immediately */}
+      {/* Hero */}
       <section className="relative flex items-center justify-center min-h-[85vh] px-4 sm:px-6 lg:px-8">
-        {/* Dark overlay gradient for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
 
         <div className="relative z-10 text-center max-w-4xl mx-auto">
-          {/* Small label above the heading */}
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4">
             Premium Grooming
           </p>
-
-          {/* Main headline — largest text on the page */}
           <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
             Where Tradition Meets{" "}
             <span className="text-primary">Modern Style</span>
           </h1>
-
-          {/* Supporting text */}
           <p className="mt-6 text-muted text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
             Experience the art of grooming at Dolsk Barbershop. Expert barbers,
             timeless techniques, and a relaxing atmosphere crafted for the modern
             gentleman.
           </p>
-
-          {/* CTA Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/booking"
@@ -50,11 +40,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== SERVICES PREVIEW ===== */}
-      {/* Shows 3 services to give visitors a taste of what we offer */}
+      {/* Services Preview */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section heading */}
           <div className="text-center mb-12">
             <p className="text-primary uppercase tracking-[0.2em] text-sm mb-2">
               What We Offer
@@ -62,7 +50,6 @@ export default function Home() {
             <h2 className="font-serif text-3xl sm:text-4xl">Our Services</h2>
           </div>
 
-          {/* Service cards grid — 1 col mobile, 3 cols desktop */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredServices.map((service) => (
               <div
@@ -85,7 +72,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Link to full services page */}
           <div className="text-center mt-10">
             <Link
               href="/services"
@@ -97,11 +83,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== ABOUT TEASER ===== */}
-      {/* Brief brand story to build trust */}
+      {/* About Teaser */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-surface">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          {/* Text content */}
           <div>
             <p className="text-primary uppercase tracking-[0.2em] text-sm mb-2">
               Our Story
@@ -127,15 +111,13 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Placeholder for image — we'll add a real image later */}
           <div className="bg-background border border-border rounded-lg h-80 flex items-center justify-center">
             <p className="text-muted text-sm">Shop Image</p>
           </div>
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
-      {/* Social proof — builds trust with potential customers */}
+      {/* Testimonials */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
@@ -147,7 +129,6 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Testimonial cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
@@ -167,7 +148,6 @@ export default function Home() {
                 key={testimonial.name}
                 className="bg-surface border border-border rounded-lg p-6"
               >
-                {/* Star rating */}
                 <div className="flex gap-1 text-primary mb-3">
                   {[...Array(5)].map((_, i) => (
                     <svg
@@ -191,8 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FINAL CTA ===== */}
-      {/* Last push to get them to book */}
+      {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-surface">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-3xl sm:text-4xl">

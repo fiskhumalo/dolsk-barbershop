@@ -1,27 +1,9 @@
 @import "tailwindcss";
 
-/*
-  DOLSK BARBERSHOP — Design System
-  
-  Colors:
-  - background: Rich black (#0F0F0F) — premium feel, not harsh
-  - surface: Dark gray (#1A1A1A) — cards/sections stand out from background
-  - primary: Warm gold (#C8A96E) — luxury, premium accent color
-  - primary-hover: Deeper gold (#B8943F) — feedback on interaction
-  - foreground: White (#FFFFFF) — high contrast text on dark
-  - muted: Gray (#A1A1A1) — secondary/less important text
-  
-  Fonts:
-  - sans (Inter): Body text — clean and readable
-  - serif (Playfair Display): Headings — elegant, classic barber vibe
-*/
-
 @theme inline {
-  /* Font families */
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
 
-  /* Brand colors */
   --color-background: #0F0F0F;
   --color-surface: #1A1A1A;
   --color-foreground: #FFFFFF;
@@ -33,26 +15,22 @@
   --color-border: #2A2A2A;
 }
 
-/* Base styles */
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
 }
 
-/* Smooth scrolling for the whole page */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles for keyboard navigation (accessibility) */
 *:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-/* Remove default focus ring but keep for keyboard users */
 *:focus:not(:focus-visible) {
   outline: none;
 }

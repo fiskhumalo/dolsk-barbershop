@@ -4,9 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-surface border-t border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        {/* Footer Grid — 1 column on mobile, 3 on desktop */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1: Brand */}
           <div>
             <h3 className="font-serif text-2xl text-primary">Dolsk</h3>
             <p className="mt-2 text-muted text-sm leading-relaxed">
@@ -14,7 +12,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
           <div>
             <h4 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-4">
               Quick Links
@@ -38,7 +35,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Contact Info */}
           <div>
             <h4 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-4">
               Contact
@@ -68,7 +64,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border text-center">
           <p className="text-muted text-xs">
             &copy; {new Date().getFullYear()} Dolsk Barbershop. All rights reserved.

@@ -4,13 +4,11 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-// Body font — clean, modern, highly readable
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-// Heading font — elegant serif, classic barber heritage feel
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],

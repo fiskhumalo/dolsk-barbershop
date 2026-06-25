@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// Navigation links — defined once, used in both desktop and mobile menus
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
@@ -14,9 +13,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  // State to track if mobile menu is open or closed
   const [isOpen, setIsOpen] = useState(false);
-  // Get current page path to highlight active link
   const pathname = usePathname();
 
   return (
@@ -26,15 +23,13 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <div className="flex h-16 items-center justify-between">
-          {/* Logo / Brand Name */}
           <Link href="/" className="flex items-center gap-2">
             <span className="font-serif text-2xl text-primary">Dolsk</span>
-            <span className="hidden sm:inline text-sm text-muted uppercase tracking-widest">
+            <span className="text-sm text-muted uppercase tracking-widest">
               Barbershop
             </span>
           </Link>
 
-          {/* Desktop Navigation — hidden on mobile, shown on medium screens and up */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
@@ -51,7 +46,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Book Now Button — desktop only */}
           <div className="hidden md:block">
             <Link
               href="/booking"
@@ -65,14 +59,12 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Button — shown only on small screens */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground p-2 rounded hover:bg-surface transition-colors"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
-            {/* Hamburger icon (3 lines) or X icon based on state */}
             {isOpen ? (
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -85,7 +77,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu — slides down when hamburger is clicked */}
         {isOpen && (
           <div className="md:hidden border-t border-border py-4 space-y-3">
             {navLinks.map((link) => (

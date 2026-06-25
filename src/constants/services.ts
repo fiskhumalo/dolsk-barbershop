@@ -1,12 +1,9 @@
-// All services offered by Dolsk Barbershop
-// Defined once here, reused on Home page (preview) and Services page (full list)
-
 export interface Service {
   id: string;
   name: string;
   description: string;
   price: number;
-  duration: string; // e.g. "30 min"
+  duration: string;
 }
 
 export const services: Service[] = [
