@@ -54,19 +54,28 @@ export default function Home() {
             {featuredServices.map((service) => (
               <div
                 key={service.id}
-                className="bg-surface border border-border rounded-lg p-6 hover:border-primary/50 transition-colors duration-300"
+                className="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors duration-300"
               >
-                <h3 className="font-serif text-xl text-foreground">
-                  {service.name}
-                </h3>
-                <p className="mt-2 text-muted text-sm leading-relaxed">
-                  {service.description}
-                </p>
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="text-primary font-semibold">
-                    R{service.price}
-                  </span>
-                  <span className="text-muted text-xs">{service.duration}</span>
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-cover object-center"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-xl text-foreground">
+                    {service.name}
+                  </h3>
+                  <p className="mt-2 text-muted text-sm leading-relaxed">
+                    {service.description}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-primary font-semibold">
+                      R{service.price}
+                    </span>
+                    <span className="text-muted text-xs">{service.duration}</span>
+                  </div>
                 </div>
               </div>
             ))}
