@@ -56,11 +56,11 @@ export default function Home() {
                 key={service.id}
                 className="bg-surface border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors duration-300"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-72 overflow-hidden bg-surface">
                   <img
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="p-6">

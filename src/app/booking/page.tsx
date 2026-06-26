@@ -145,21 +145,30 @@ function BookingContent() {
                       setSelectedService(service.id);
                       setStep("datetime");
                     }}
-                    className={`text-left p-4 rounded-lg border transition-colors duration-200 ${
+                    className={`text-left rounded-lg border overflow-hidden transition-colors duration-200 ${
                       selectedService === service.id
                         ? "border-primary bg-primary/5"
                         : "border-border bg-surface hover:border-primary/50"
                     }`}
                   >
-                    <h3 className="font-semibold text-foreground">
-                      {service.name}
-                    </h3>
-                    <p className="text-muted text-xs mt-1">
-                      {service.duration}
-                    </p>
-                    <p className="text-primary font-semibold mt-2">
-                      R{service.price}
-                    </p>
+                    <div className="h-40 overflow-hidden bg-surface">
+                      <img
+                        src={service.image}
+                        alt={service.name}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-semibold text-foreground">
+                        {service.name}
+                      </h3>
+                      <p className="text-muted text-xs mt-1">
+                        {service.duration}
+                      </p>
+                      <p className="text-primary font-semibold mt-2">
+                        R{service.price}
+                      </p>
+                    </div>
                   </button>
                 ))}
               </div>

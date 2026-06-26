@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 // Team members data — could move to constants/ if reused elsewhere
 const team = [
   {
-    name: "Daniel Olsen",
+    name: "Fisokuhle Khumalo",
     role: "Founder & Head Barber",
-    bio: "15 years of experience in classic and modern cuts. Daniel founded Dolsk with a vision of premium grooming for every man.",
+    bio: "15 years of experience in classic and modern cuts. Fisokuhle founded Dolsk with a vision of premium grooming for every man.",
   },
   {
-    name: "Marcus Phiri",
+    name: "Mandla Sibiya",
     role: "Senior Barber",
     bio: "Specializes in skin fades and creative designs. Known for his precision and attention to detail.",
   },
   {
-    name: "Johan van Wyk",
+    name: "Lindokuhle Makuleni",
     role: "Barber & Stylist",
     bio: "Expert in beard grooming and hot towel shaves. Brings a calm, relaxing energy to every appointment.",
   },
@@ -46,11 +46,11 @@ export default function AboutPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Image */}
-          <div className="relative overflow-hidden rounded-lg h-80 order-2 md:order-1">
+          <div className="relative overflow-hidden rounded-lg h-80 order-2 md:order-1 bg-surface">
             <img
               src="/about-barber.jpg"
               alt="Barber giving a fresh fade at Dolsk Barbershop"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
 

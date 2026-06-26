@@ -37,11 +37,11 @@ export default function ServicesPage() {
                 className="bg-surface border border-border rounded-lg overflow-hidden flex flex-col hover:border-primary/50 transition-colors duration-300"
               >
                 {/* Service image */}
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-80 overflow-hidden bg-surface">
                   <img
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-contain"
                   />
                 </div>
 
