@@ -291,6 +291,7 @@ function BookingContent() {
                     onChange={(e) => setCustomerName(e.target.value)}
                     className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                     placeholder="Your full name"
+                    maxLength={100}
                     required
                   />
                 </div>
@@ -306,6 +307,7 @@ function BookingContent() {
                     onChange={(e) => setCustomerPhone(e.target.value)}
                     className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                     placeholder="074 912 1260"
+                    maxLength={15}
                     required
                   />
                 </div>
@@ -368,13 +370,13 @@ function BookingContent() {
                 </button>
                 <button
                   onClick={() => {
-                    if (customerName && customerPhone) {
+                    if (customerName.trim() && customerPhone.trim()) {
                       setStep("confirmation");
                     }
                   }}
-                  disabled={!customerName || !customerPhone}
+                  disabled={!customerName.trim() || !customerPhone.trim()}
                   className={`px-6 py-2.5 rounded text-sm uppercase tracking-wide font-semibold transition-colors duration-200 ${
-                    customerName && customerPhone
+                    customerName.trim() && customerPhone.trim()
                       ? "bg-primary hover:bg-primary-hover text-background"
                       : "bg-surface border border-border text-muted cursor-not-allowed"
                   }`}

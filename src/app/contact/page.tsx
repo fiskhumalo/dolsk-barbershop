@@ -22,7 +22,13 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
+    const trimmedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (!trimmedData.name || !trimmedData.email || !trimmedData.message) {
       setStatus("error");
       return;
     }
@@ -73,6 +79,7 @@ export default function ContactPage() {
                   onChange={(e) => updateField("name", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                   placeholder="Your name"
+                  maxLength={100}
                   required
                 />
               </div>
@@ -88,6 +95,7 @@ export default function ContactPage() {
                   onChange={(e) => updateField("email", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                   placeholder="your@email.com"
+                  maxLength={254}
                   required
                 />
               </div>
@@ -103,6 +111,7 @@ export default function ContactPage() {
                   onChange={(e) => updateField("message", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="How can we help you?"
+                  maxLength={1000}
                   required
                 />
               </div>
