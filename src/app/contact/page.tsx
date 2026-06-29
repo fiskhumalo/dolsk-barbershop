@@ -1,38 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import {
+  BUSINESS_PHONE,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_EMAIL,
+  BUSINESS_ADDRESS,
+  WHATSAPP_URL,
+} from "@/constants/contact";
+
+type FormStatus = "idle" | "success" | "error";
 
 export default function ContactPage() {
-  // Form state — tracks what the user types
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  // Tracks form submission status
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-
-  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
-    // Prevent page reload (default form behavior)
     e.preventDefault();
 
-    // Basic validation — check if all fields are filled
     if (!formData.name || !formData.email || !formData.message) {
       setStatus("error");
       return;
     }
 
-    // In a real app, you'd send this to an API
-    // For now, we simulate success
     setStatus("success");
 
-    // Reset form after 3 seconds
     setTimeout(() => {
       setFormData({ name: "", email: "", message: "" });
       setStatus("idle");
     }, 3000);
+  };
+
+  const updateField = (field: keyof typeof formData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
@@ -45,8 +49,7 @@ export default function ContactPage() {
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl">Contact Us</h1>
           <p className="mt-4 text-muted text-lg max-w-2xl mx-auto">
-            Have a question or want to get in touch? We&apos;d love to hear from
-            you.
+            Have a question or want to get in touch? We&apos;d love to hear from you.
           </p>
         </div>
       </section>
@@ -54,75 +57,56 @@ export default function ContactPage() {
       {/* Contact Content */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Form */}
           <div>
             <h2 className="font-serif text-2xl mb-6">Send a Message</h2>
 
             <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Name field */}
               <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm text-muted mb-2"
-                >
+                <label htmlFor="name" className="block text-sm text-muted mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
+                  onChange={(e) => updateField("name", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                   placeholder="Your name"
                   required
                 />
               </div>
 
-              {/* Email field */}
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm text-muted mb-2"
-                >
+                <label htmlFor="email" className="block text-sm text-muted mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
+                  onChange={(e) => updateField("email", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors"
                   placeholder="your@email.com"
                   required
                 />
               </div>
 
-              {/* Message field */}
               <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm text-muted mb-2"
-                >
+                <label htmlFor="message" className="block text-sm text-muted mb-2">
                   Message
                 </label>
                 <textarea
                   id="message"
                   rows={5}
                   value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
+                  onChange={(e) => updateField("message", e.target.value)}
                   className="w-full bg-surface border border-border rounded px-4 py-3 text-foreground placeholder:text-muted/50 focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="How can we help you?"
                   required
                 />
               </div>
 
-              {/* Submit button */}
               <button
                 type="submit"
                 className="w-full bg-primary hover:bg-primary-hover text-background font-semibold py-3 rounded text-sm uppercase tracking-wide transition-colors duration-200"
@@ -130,14 +114,12 @@ export default function ContactPage() {
                 Send Message
               </button>
 
-              {/* Success message */}
               {status === "success" && (
                 <div className="bg-success/10 border border-success/30 text-success rounded p-3 text-sm text-center">
                   Message sent successfully! We&apos;ll get back to you soon.
                 </div>
               )}
 
-              {/* Error message */}
               {status === "error" && (
                 <div className="bg-error/10 border border-error/30 text-error rounded p-3 text-sm text-center">
                   Please fill in all fields before submitting.
@@ -146,52 +128,46 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* Contact Info */}
+          {/* Info */}
           <div>
             <h2 className="font-serif text-2xl mb-6">Visit Us</h2>
 
             <div className="space-y-6">
-              {/* Address */}
               <div>
                 <h3 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-2">
                   Address
                 </h3>
                 <p className="text-muted text-sm">
-                  123 Main Street
-                  <br />
-                  City Center
-                  <br />
-                  Free State, South Africa
+                  {BUSINESS_ADDRESS.street}<br />
+                  {BUSINESS_ADDRESS.area}<br />
+                  {BUSINESS_ADDRESS.region}
                 </p>
               </div>
 
-              {/* Phone */}
               <div>
                 <h3 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-2">
                   Phone
                 </h3>
                 <a
-                  href="tel:+27749121260"
+                  href={`tel:${BUSINESS_PHONE}`}
                   className="text-muted hover:text-primary transition-colors text-sm"
                 >
-                  +27 74 912 1260
+                  {BUSINESS_PHONE_DISPLAY}
                 </a>
               </div>
 
-              {/* Email */}
               <div>
                 <h3 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-2">
                   Email
                 </h3>
                 <a
-                  href="mailto:fiskhumalo@gmail.com"
+                  href={`mailto:${BUSINESS_EMAIL}`}
                   className="text-muted hover:text-primary transition-colors text-sm"
                 >
-                  fiskhumalo@gmail.com
+                  {BUSINESS_EMAIL}
                 </a>
               </div>
 
-              {/* Business Hours */}
               <div>
                 <h3 className="text-foreground font-semibold text-sm uppercase tracking-wide mb-2">
                   Business Hours
@@ -212,10 +188,9 @@ export default function ContactPage() {
                 </ul>
               </div>
 
-              {/* WhatsApp */}
               <div>
                 <a
-                  href="https://wa.me/27749121260"
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-surface border border-border hover:border-primary/50 rounded px-5 py-3 text-sm text-muted hover:text-foreground transition-colors duration-200"
