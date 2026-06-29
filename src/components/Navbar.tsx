@@ -79,12 +79,11 @@ export default function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden border-t border-border py-4 space-y-3" role="menu">
+          <div className="md:hidden border-t border-border py-4 space-y-3" aria-label="Mobile navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                role="menuitem"
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-2 rounded text-sm uppercase tracking-wide transition-colors duration-200 ${
                   pathname === link.href
@@ -97,7 +96,6 @@ export default function Navbar() {
             ))}
             <Link
               href="/booking"
-              role="menuitem"
               onClick={() => setIsOpen(false)}
               className="block bg-primary hover:bg-primary-hover text-background font-semibold px-3 py-2.5 rounded text-sm uppercase tracking-wide text-center transition-colors duration-200 mt-3"
             >
