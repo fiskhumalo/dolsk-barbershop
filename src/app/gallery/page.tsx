@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { galleryItems, galleryCategories, type GalleryItem } from "@/constants/gallery";
 
@@ -8,10 +8,13 @@ export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [lightboxImage, setLightboxImage] = useState<GalleryItem | null>(null);
 
-  const filteredItems =
-    activeCategory === "All"
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeCategory);
+  const filteredItems = useMemo(
+    () =>
+      activeCategory === "All"
+        ? galleryItems
+        : galleryItems.filter((item) => item.category === activeCategory),
+    [activeCategory]
+  );
 
   return (
     <main className="flex-1">

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { services } from "@/constants/services";
 import { businessHours, getTimeSlotsForDay, dayNames } from "@/constants/business-hours";
+import { BUSINESS_PHONE } from "@/constants/contact";
 
 type BookingStep = "service" | "datetime" | "details" | "confirmation";
 
@@ -19,7 +20,7 @@ function BookingContent() {
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
 
-  // Pre-select service if coming from Services page (e.g., /booking?service=classic-cut)
+  // Pre-select service if coming from Services page
   useEffect(() => {
     const serviceParam = searchParams.get("service");
     if (serviceParam && services.find((s) => s.id === serviceParam)) {
@@ -28,7 +29,7 @@ function BookingContent() {
     }
   }, [searchParams]);
 
-  const getCalendarDays = () => {
+  const calendarDays = useMemo(() => {
     const days: Date[] = [];
     const today = new Date();
     for (let i = 0; i < 14; i++) {
@@ -37,31 +38,28 @@ function BookingContent() {
       days.push(date);
     }
     return days;
-  };
+  }, []);
 
-  const calendarDays = getCalendarDays();
+  const selectedServiceData = useMemo(
+    () => services.find((s) => s.id === selectedService),
+    [selectedService]
+  );
 
-  const isDayClosed = (date: Date): boolean => {
-    const dayOfWeek = date.getDay();
-    return !businessHours[dayOfWeek].open;
-  };
+  const availableTimeSlots = useMemo(
+    () => (selectedDate ? getTimeSlotsForDay(selectedDate.getDay()) : []),
+    [selectedDate]
+  );
 
-  const availableTimeSlots = selectedDate
-    ? getTimeSlotsForDay(selectedDate.getDay())
-    : [];
-
-  const generateWhatsAppMessage = () => {
-    const service = services.find((s) => s.id === selectedService);
+  const whatsappLink = useMemo(() => {
+    if (step !== "confirmation") return "";
     const dateStr = selectedDate
-      ? selectedDate.toLocaleDateString("en-ZA", {
-          day: "numeric",
-          month: "long",
-        })
+      ? selectedDate.toLocaleDateString("en-ZA", { day: "numeric", month: "long" })
       : "";
-    return `Hello, I would like to book a ${service?.name} on ${dateStr} at ${selectedTime}. My name is ${customerName}. Phone: ${customerPhone}`;
-  };
+    const message = `Hello, I would like to book a ${selectedServiceData?.name} on ${dateStr} at ${selectedTime}. My name is ${customerName}. Phone: ${customerPhone}`;
+    return `https://wa.me/${BUSINESS_PHONE.replace("+", "")}?text=${encodeURIComponent(message)}`;
+  }, [step, selectedDate, selectedServiceData, selectedTime, customerName, customerPhone]);
 
-  const whatsappLink = `https://wa.me/27749121260?text=${encodeURIComponent(generateWhatsAppMessage())}`;
+  const isDayClosed = (date: Date) => !businessHours[date.getDay()].open;
 
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-ZA", {
@@ -146,6 +144,7 @@ function BookingContent() {
                       <img
                         src={service.image}
                         alt={service.name}
+                        loading="lazy"
                         className="w-full h-full object-contain"
                       />
                     </div>
@@ -335,7 +334,7 @@ function BookingContent() {
                   <li className="flex justify-between">
                     <span className="text-muted">Service</span>
                     <span className="text-foreground font-medium">
-                      {services.find((s) => s.id === selectedService)?.name}
+                      {selectedServiceData?.name}
                     </span>
                   </li>
                   <li className="flex justify-between">
@@ -353,7 +352,7 @@ function BookingContent() {
                   <li className="flex justify-between border-t border-border pt-2 mt-2">
                     <span className="text-muted">Price</span>
                     <span className="text-primary font-semibold">
-                      R{services.find((s) => s.id === selectedService)?.price}
+                      R{selectedServiceData?.price}
                     </span>
                   </li>
                 </ul>
@@ -420,7 +419,7 @@ function BookingContent() {
                   <li className="flex justify-between">
                     <span className="text-muted">Service</span>
                     <span className="text-foreground font-medium">
-                      {services.find((s) => s.id === selectedService)?.name}
+                      {selectedServiceData?.name}
                     </span>
                   </li>
                   <li className="flex justify-between">

@@ -39,6 +39,7 @@ export default function AboutPage() {
             <img
               src="/about-barber.jpg"
               alt="Barber giving a fresh fade at Dolsk Barbershop"
+              loading="lazy"
               className="w-full h-full object-contain"
             />
           </div>

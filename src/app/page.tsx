@@ -103,6 +103,7 @@ export default function Home() {
             <img
               src="/barber-1.jpg"
               alt="Client getting a fresh cut at Dolsk Barbershop"
+              loading="lazy"
               className="w-full h-full object-cover"
             />
           </div>

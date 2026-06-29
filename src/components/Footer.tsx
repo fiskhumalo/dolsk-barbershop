@@ -1,4 +1,16 @@
 import Link from "next/link";
+import {
+  BUSINESS_PHONE,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_EMAIL,
+} from "@/constants/contact";
+
+const quickLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/booking", label: "Book Appointment" },
+  { href: "/contact", label: "Contact Us" },
+];
 
 export default function Footer() {
   return (
@@ -17,12 +29,7 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-2">
-              {[
-                { href: "/services", label: "Services" },
-                { href: "/gallery", label: "Gallery" },
-                { href: "/booking", label: "Book Appointment" },
-                { href: "/contact", label: "Contact Us" },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -46,18 +53,18 @@ export default function Footer() {
               <li>Sun: Closed</li>
               <li className="pt-2">
                 <a
-                  href="tel:+27749121260"
+                  href={`tel:${BUSINESS_PHONE}`}
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  +27 74 912 1260
+                  {BUSINESS_PHONE_DISPLAY}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:fiskhumalo@gmail.com"
+                  href={`mailto:${BUSINESS_EMAIL}`}
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  fiskhumalo@gmail.com
+                  {BUSINESS_EMAIL}
                 </a>
               </li>
             </ul>
