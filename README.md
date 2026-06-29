@@ -120,10 +120,18 @@ src/
 │   └── booking/          # 4-step booking system
 ├── components/           # Reusable UI components
 │   ├── Navbar.tsx        # Responsive navbar with active states
-│   └── Footer.tsx        # Site footer with links + hours
+│   ├── Footer.tsx        # Site footer with links + hours
+│   ├── PageHeader.tsx    # Reusable page header section
+│   ├── SectionHeader.tsx # Reusable section title
+│   ├── ServiceCard.tsx   # Service card with image + pricing
+│   └── StarRating.tsx    # Star rating display
 └── constants/            # Shared data
     ├── services.ts       # Service definitions (name, price, duration, image)
-    └── business-hours.ts # Operating hours + time slot generator
+    ├── business-hours.ts # Operating hours + time slot generator
+    ├── gallery.ts        # Gallery items and categories
+    ├── testimonials.ts   # Customer testimonials
+    ├── team.ts           # Team member profiles
+    └── contact.ts        # Business contact info (phone, email, address)
 ```
 
 ## Design Decisions
