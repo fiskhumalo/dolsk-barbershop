@@ -3,6 +3,7 @@ import {
   BUSINESS_PHONE,
   BUSINESS_PHONE_DISPLAY,
   BUSINESS_EMAIL,
+  BUSINESS_ADDRESS,
 } from "@/constants/contact";
 
 const quickLinks = [
@@ -47,7 +48,7 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-2 text-sm text-muted">
-              <li>123 Main Street, City Center</li>
+              <li>{BUSINESS_ADDRESS.street}, {BUSINESS_ADDRESS.area}</li>
               <li>Mon - Fri: 08:00 - 18:00</li>
               <li>Sat: 08:00 - 14:00</li>
               <li>Sun: Closed</li>

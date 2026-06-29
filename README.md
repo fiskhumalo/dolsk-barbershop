@@ -67,7 +67,7 @@ Closed days are:
 
 | Category | Score |
 |----------|-------|
-| Performance | 96 |
+| Performance | 87 |
 | Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
