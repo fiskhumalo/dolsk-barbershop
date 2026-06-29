@@ -1,6 +1,3 @@
-// All services offered by Dolsk Barbershop
-// Defined once here, reused on Home page (preview) and Services page (full list)
-
 export interface Service {
   id: string;
   name: string;

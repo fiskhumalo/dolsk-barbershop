@@ -5,14 +5,12 @@ import { useSearchParams } from "next/navigation";
 import { services } from "@/constants/services";
 import { businessHours, getTimeSlotsForDay, dayNames } from "@/constants/business-hours";
 
-// Steps in the booking flow
 type BookingStep = "service" | "datetime" | "details" | "confirmation";
 
 // Inner component that uses useSearchParams (must be inside Suspense)
 function BookingContent() {
   const searchParams = useSearchParams();
 
-  // ===== STATE =====
   const [step, setStep] = useState<BookingStep>("service");
   const [selectedService, setSelectedService] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -30,8 +28,6 @@ function BookingContent() {
     }
   }, [searchParams]);
 
-  // ===== CALENDAR LOGIC =====
-  // Generate next 14 days for the calendar
   const getCalendarDays = () => {
     const days: Date[] = [];
     const today = new Date();
@@ -45,18 +41,15 @@ function BookingContent() {
 
   const calendarDays = getCalendarDays();
 
-  // Check if a date is a closed day
   const isDayClosed = (date: Date): boolean => {
     const dayOfWeek = date.getDay();
     return !businessHours[dayOfWeek].open;
   };
 
-  // Get time slots for the selected date
   const availableTimeSlots = selectedDate
     ? getTimeSlotsForDay(selectedDate.getDay())
     : [];
 
-  // ===== WHATSAPP MESSAGE =====
   const generateWhatsAppMessage = () => {
     const service = services.find((s) => s.id === selectedService);
     const dateStr = selectedDate
@@ -70,7 +63,6 @@ function BookingContent() {
 
   const whatsappLink = `https://wa.me/27749121260?text=${encodeURIComponent(generateWhatsAppMessage())}`;
 
-  // ===== FORMAT DATE FOR DISPLAY =====
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-ZA", {
       weekday: "short",
@@ -79,7 +71,6 @@ function BookingContent() {
     });
   };
 
-  // ===== RENDER =====
   return (
     <main className="flex-1">
       {/* Page Header */}
@@ -133,7 +124,7 @@ function BookingContent() {
       {/* Booking Content */}
       <section className="py-8 px-4 sm:px-6 lg:px-8 pb-20">
         <div className="max-w-3xl mx-auto">
-          {/* ===== STEP 1: SELECT SERVICE ===== */}
+          {/* Step 1: Service */}
           {step === "service" && (
             <div>
               <h2 className="font-serif text-2xl mb-6">Choose a Service</h2>
@@ -175,7 +166,7 @@ function BookingContent() {
             </div>
           )}
 
-          {/* ===== STEP 2: SELECT DATE & TIME ===== */}
+          {/* Step 2: Date & Time */}
           {step === "datetime" && (
             <div>
               <h2 className="font-serif text-2xl mb-6">Pick a Date & Time</h2>
@@ -284,7 +275,7 @@ function BookingContent() {
             </div>
           )}
 
-          {/* ===== STEP 3: CUSTOMER DETAILS ===== */}
+          {/* Step 3: Details */}
           {step === "details" && (
             <div>
               <h2 className="font-serif text-2xl mb-6">Your Details</h2>
@@ -395,7 +386,7 @@ function BookingContent() {
             </div>
           )}
 
-          {/* ===== STEP 4: CONFIRMATION ===== */}
+          {/* Step 4: Confirmation */}
           {step === "confirmation" && (
             <div className="text-center">
               {/* Success icon */}
