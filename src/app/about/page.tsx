@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
 import { team } from "@/constants/team";
 
@@ -36,11 +37,12 @@ export default function AboutPage() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="relative overflow-hidden rounded-lg h-80 order-2 md:order-1 bg-surface">
-            <img
+            <Image
               src="/about-barber.jpg"
               alt="Barber giving a fresh fade at Dolsk Barbershop"
-              loading="lazy"
-              className="w-full h-full object-contain"
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
 

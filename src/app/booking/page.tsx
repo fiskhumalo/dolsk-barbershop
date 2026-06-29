@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo, Suspense } from "react";
+import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { services } from "@/constants/services";
 import { businessHours, getTimeSlotsForDay, dayNames } from "@/constants/business-hours";
 import { BUSINESS_PHONE } from "@/constants/contact";
@@ -12,22 +13,20 @@ type BookingStep = "service" | "datetime" | "details" | "confirmation";
 function BookingContent() {
   const searchParams = useSearchParams();
 
-  const [step, setStep] = useState<BookingStep>("service");
-  const [selectedService, setSelectedService] = useState<string>("");
+  // Pre-select service if coming from Services page
+  const serviceParam = searchParams.get("service");
+  const initialService = serviceParam && services.find((s) => s.id === serviceParam)
+    ? serviceParam
+    : "";
+  const initialStep: BookingStep = initialService ? "datetime" : "service";
+
+  const [step, setStep] = useState<BookingStep>(initialStep);
+  const [selectedService, setSelectedService] = useState<string>(initialService);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
-
-  // Pre-select service if coming from Services page
-  useEffect(() => {
-    const serviceParam = searchParams.get("service");
-    if (serviceParam && services.find((s) => s.id === serviceParam)) {
-      setSelectedService(serviceParam);
-      setStep("datetime");
-    }
-  }, [searchParams]);
 
   const calendarDays = useMemo(() => {
     const days: Date[] = [];
@@ -141,12 +140,13 @@ function BookingContent() {
                         : "border-border bg-surface hover:border-primary/50"
                     }`}
                   >
-                    <div className="h-40 overflow-hidden bg-surface">
-                      <img
+                    <div className="relative h-40 overflow-hidden bg-surface">
+                      <Image
                         src={service.image}
                         alt={service.name}
-                        loading="lazy"
-                        className="w-full h-full object-contain"
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 640px) 100vw, 50vw"
                       />
                     </div>
                     <div className="p-4">

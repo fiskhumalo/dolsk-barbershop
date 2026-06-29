@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { services } from "@/constants/services";
 import { testimonials } from "@/constants/testimonials";
 import SectionHeader from "@/components/SectionHeader";
@@ -100,11 +101,12 @@ export default function Home() {
           </div>
 
           <div className="relative overflow-hidden rounded-lg h-80">
-            <img
+            <Image
               src="/barber-1.jpg"
               alt="Client getting a fresh cut at Dolsk Barbershop"
-              loading="lazy"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Service } from "@/constants/services";
 
 interface ServiceCardProps {
@@ -15,10 +16,12 @@ export default function ServiceCard({
   return (
     <div className="bg-surface border border-border rounded-lg overflow-hidden flex flex-col hover:border-primary/50 transition-colors duration-300">
       <div className={`relative ${imageHeight} overflow-hidden bg-surface`}>
-        <img
+        <Image
           src={service.image}
           alt={service.name}
-          className="w-full h-full object-contain"
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
 
