@@ -1,10 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
-
-// Note: metadata export doesn't work in client components
-// We'll handle SEO for this page differently later if needed
 
 export default function ContactPage() {
   // Form state — tracks what the user types
