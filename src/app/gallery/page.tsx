@@ -37,6 +37,7 @@ export default function GalleryPage() {
           {galleryCategories.map((category) => (
             <button
               key={category}
+              type="button"
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2 rounded text-sm uppercase tracking-wide transition-colors duration-200 ${
                 activeCategory === category
@@ -91,9 +92,10 @@ export default function GalleryPage() {
             <button
               onClick={() => setLightboxImage(null)}
               className="absolute -top-10 right-0 text-white hover:text-primary transition-colors z-10"
+              type="button"
               aria-label="Close lightbox"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>

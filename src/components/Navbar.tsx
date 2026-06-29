@@ -60,17 +60,18 @@ export default function Navbar() {
           </div>
 
           <button
+            type="button"
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground p-2 rounded hover:bg-surface transition-colors"
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
           >
             {isOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -78,11 +79,12 @@ export default function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden border-t border-border py-4 space-y-3">
+          <div className="md:hidden border-t border-border py-4 space-y-3" role="menu">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                role="menuitem"
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-2 rounded text-sm uppercase tracking-wide transition-colors duration-200 ${
                   pathname === link.href
@@ -95,6 +97,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/booking"
+              role="menuitem"
               onClick={() => setIsOpen(false)}
               className="block bg-primary hover:bg-primary-hover text-background font-semibold px-3 py-2.5 rounded text-sm uppercase tracking-wide text-center transition-colors duration-200 mt-3"
             >
